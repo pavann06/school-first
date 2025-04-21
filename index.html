@@ -25,6 +25,15 @@
   <!-- Favicon -->
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 
+  <style>
+    @media screen and (max-width: 767px) {
+  #value_slider .item {
+    margin-bottom: 20px;
+  }
+}
+
+  </style>
+
 </head>
 
 <body>
@@ -1439,6 +1448,46 @@
         $('html, body').animate({ scrollTop: $(window).scrollTop() + 600 }, 800); // Adjust the speed (800ms) as needed
       });
     });
+
+  </script>
+
+  <script>
+    function toggleValueSlider() {
+  if ($(window).width() < 768) {
+    if ($('#value_slider').hasClass('owl-loaded')) {
+      $('#value_slider').trigger('destroy.owl.carousel').removeClass('owl-carousel owl-loaded');
+      $('#value_slider .owl-stage-outer').children().unwrap();
+    }
+  } else {
+    $('#value_slider').addClass('owl-carousel');
+    $('#value_slider').owlCarousel({
+      loop: true,
+      margin: 30,
+      nav: true,
+      dots: false,
+      items: 3,
+      responsive: {
+        0: {
+          items: 1
+        },
+        768: {
+          items: 2
+        },
+        1024: {
+          items: 3
+        }
+      }
+    });
+  }
+}
+
+$(document).ready(function () {
+  toggleValueSlider();
+});
+
+$(window).resize(function () {
+  toggleValueSlider();
+});
 
   </script>
 
