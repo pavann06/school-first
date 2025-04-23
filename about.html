@@ -25,6 +25,23 @@
   <!-- Favicon -->
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 
+  <style>
+    @media screen and (max-width: 767px) {
+  #value_slider .item {
+    margin-bottom: 20px;
+  }
+}
+
+.value_block .icon img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+
+  </style>
+
 </head>
 
 <body>
@@ -1469,6 +1486,46 @@
   <script src="js/aos.js"></script>
   <!-- main-js-Link -->
   <script src="js/main.js"></script>
+
+  <script>
+    function toggleValueSlider() {
+  if ($(window).width() < 768) {
+    if ($('#value_slider').hasClass('owl-loaded')) {
+      $('#value_slider').trigger('destroy.owl.carousel').removeClass('owl-carousel owl-loaded');
+      $('#value_slider .owl-stage-outer').children().unwrap();
+    }
+  } else {
+    $('#value_slider').addClass('owl-carousel');
+    $('#value_slider').owlCarousel({
+      loop: true,
+      margin: 30,
+      nav: true,
+      dots: false,
+      items: 3,
+      responsive: {
+        0: {
+          items: 1
+        },
+        768: {
+          items: 2
+        },
+        1024: {
+          items: 3
+        }
+      }
+    });
+  }
+}
+
+$(document).ready(function () {
+  toggleValueSlider();
+});
+
+$(window).resize(function () {
+  toggleValueSlider();
+});
+
+  </script>
 
 </body>
 
